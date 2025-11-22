@@ -8,10 +8,10 @@ from sklearn.model_selection import train_test_split
 from dataclasses import dataclass
 
 
-from src.components.data_transformation import DataTransformationConfig
+from src.components.data_transformation import DataTransformationConfig  # noqa: F401
 from src.components.data_transformation import DataTransformation
 
-from src.components.model_trainer import ModelTrainerConfig
+from src.components.model_trainer import ModelTrainerConfig  # noqa: F401
 from src.components.model_trainer import ModelTrainer
 
 
@@ -46,7 +46,7 @@ class DataIngestion:
 
             return(
                 self.ingestion_config.train_data_path,
-                self.ingestion_config.train_data_path
+                self.ingestion_config.test_data_path
 
             )    
         except Exception as e:
