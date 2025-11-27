@@ -13,17 +13,14 @@ from sklearn.model_selection import GridSearchCV
 
 from src.exception import CustomException
 
-def save_object(file_path, obj):
+def load_object(file_path):
+    """Corrected: top-level function + fixed 'rb' mode"""
     try:
-        dir_path = os.path.dirname(file_path)
-
-        os.makedirs(dir_path,exist_ok=True)
-
-        with open(file_path, "wb") as file_obj:
-            dill.dump(obj, file_obj)
+        with open(file_path, "rb") as file_obj:
+            return dill.load(file_obj)
 
     except Exception as e:
-        raise CustomException(e,sys)
+        raise CustomException(e, sys)
     
 def evaluate_models(X_train,y_train,X_test,y_test,models,param):
     try:
@@ -54,3 +51,11 @@ def evaluate_models(X_train,y_train,X_test,y_test,models,param):
     
     except Exception as e:
         raise CustomException(e, sys)
+    
+    def load_object(file_path):
+        try:
+            with open(file_path, "rb") as file_obj:
+                return dill.load(file_obj)
+        
+        except Exception as e:
+            raise CustomException(e, sys)
